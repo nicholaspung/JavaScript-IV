@@ -55,7 +55,7 @@ class Student extends Person {
     }
 
     graduate() {
-        return this.grade > 70 ? `${this.name} has graduated!` : `${this.name} unfortunately cannot graduate until they get better grades.`;
+        return this.grade > 70 ? `${this.name} has graduated with a ${this.grade}!` : `${this.name} unfortunately cannot graduate until they get better grades. Their current grade is ${this.grade}.`;
     }
 }
 
@@ -103,7 +103,7 @@ const kyle = new Student({
     previousBackground: 'CEO',
     favSubjects: ['Philosophy'],
     className: 'C++',
-    grade: 91
+    grade: 68
   });
 
 // Instructors Test
@@ -174,6 +174,7 @@ console.log(kyle);
 console.log(kyle.listsSubjects());
 console.log(patty);
 console.log(patty.sprintChallenge(`Javascript`));
+console.log(patty.graduate());
 console.log(helen);
 console.log(helen.PRAssignment('CSS'));
 console.log(helen.graduate());
