@@ -25,7 +25,11 @@ class Instructor extends Person {
     }
 
     grade(student, subject) {
-        return `${student.name} receives a perfect score on ${subject}`;
+        return `${student.name} receives a perfect score on ${subject}.`;
+    }
+
+    randomGrade(student, subject) {
+        return `${this.name} graded ${student.name}'s assignment and got a ${student.grade + Math.floor(Math.random() * 10) - 15} on ${subject}.`;
     }
 }
 
@@ -35,6 +39,7 @@ class Student extends Person {
         this.previousBackground = studentAttributes.previousBackground;
         this.className = studentAttributes.className;
         this.favSubjects = studentAttributes.favSubjects;
+        this.grade = studentAttributes.grade;
     }
 
     listsSubjects() {
@@ -42,11 +47,15 @@ class Student extends Person {
     }
 
     PRAssignment(subject) {
-        return `${this.name} has submitted a PR for ${subject}.`
+        return `${this.name} has submitted a PR for ${subject}.`;
     }
 
     sprintChallenge(subject) {
-        return `${this.name} has begun sprint challenge on ${subject}`;
+        return `${this.name} has begun sprint challenge on ${subject}.`;
+    }
+
+    graduate() {
+        return this.grade > 70 ? `${this.name} has graduated!` : `${this.name} unfortunately cannot graduate until they get better grades.`;
     }
 }
 
@@ -62,7 +71,7 @@ class ProjectManager extends Instructor {
     }
 
     debugsCode(student, subject) {
-        return `${this.name} debugs ${student.name}'s code on ${student.subject} `
+        return `${this.name} debugs ${student.name}'s code on ${student.subject}.`;
     }
 }
 
@@ -73,7 +82,8 @@ const kyle = new Student({
     age: 17,
     previousBackground: 'Tech Support',
     favSubjects: ['HTML and CSS', 'Javascript', `Heroics`],
-    className: 'Front-end Web Development'
+    className: 'Front-end Web Development',
+    grade: 98
   });
 
   const patty = new Student({
@@ -82,7 +92,8 @@ const kyle = new Student({
     age: 24,
     previousBackground: 'Sales',
     favSubjects: ['Databases'],
-    className: 'Back-end Development'
+    className: 'Back-end Development',
+    grade: 100
   });
 
   const helen = new Student({
@@ -91,7 +102,8 @@ const kyle = new Student({
     age: 61,
     previousBackground: 'CEO',
     favSubjects: ['Philosophy'],
-    className: 'C++'
+    className: 'C++',
+    grade: 91
   });
 
 // Instructors Test
@@ -164,6 +176,7 @@ console.log(patty);
 console.log(patty.sprintChallenge(`Javascript`));
 console.log(helen);
 console.log(helen.PRAssignment('CSS'));
+console.log(helen.graduate());
 
 // Instructors
 console.log(fred);
@@ -171,6 +184,7 @@ console.log(fred.speak());
 console.log(laura);
 console.log(laura.demo(`Javascript`));
 console.log(lawrence.grade(kyle, `Javascript`));
+console.log(laura.randomGrade(kyle, `Web APIs`));
 
 // Project Manager
 console.log(bobPM);
@@ -179,3 +193,4 @@ console.log(tracyPM);
 console.log(tracyPM.debugsCode(patty, `Javascript`));
 console.log(alexPM);
 console.log(alexPM.grade(kyle, `Python`));
+console.log(alexPM.randomGrade(patty, `SQL`));
